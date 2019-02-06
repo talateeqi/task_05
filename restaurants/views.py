@@ -1,17 +1,20 @@
 from django.shortcuts import render
+from restaurants.models import Restaurant
 
 def welcome(request):
     return render(request, 'index.html', {'msg':'Hello World!'})
 
 def restaurant_list(request):
-    context = {
-        "restaurants":,
-    }
-    return render(request, 'list.html', context)
+
+	context = {
+		"restaurants": Restaurant.objects.all(),
+		}
+	return render(request, 'list.html', context)
 
 
 def restaurant_detail(request, restaurant_id):
-    context = {
-        "restaurant":,
-    }
-    return render(request, 'detail.html', context)
+	
+	context = {
+		"restaurant": Restaurant.objects.get(id=restaurant_id),
+	}
+	return render(request, 'detail.html', context)
